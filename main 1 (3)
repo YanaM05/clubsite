@@ -1,0 +1,66 @@
+let cart = [];
+
+function toggleCart() {
+    document.getElementById('cart-modal').classList.toggle('active');
+}
+
+function addToCart(name, price) {
+    const numericPrice = parseFloat(price.replace('$', ''));
+    cart.push({ name, price: numericPrice });
+    updateCartUI();
+    
+    // Tiny bounce effect on icon
+    const icon = document.getElementById('cart-icon');
+    icon.style.transform = "scale(1.1)";
+    setTimeout(() => icon.style.transform = "scale(1)", 200);
+}
+
+function updateCartUI() {
+    const cartContainer = document.getElementById('cart-items');
+    const countDisplay = document.getElementById('cart-count');
+    const totalDisplay = document.getElementById('cart-total');
+    
+    countDisplay.textContent = cart.length;
+    
+    if (cart.length === 0) {
+        cartContainer.innerHTML = "<p>Your basket is empty.</p>";
+        totalDisplay.textContent = "$0.00";
+        return;
+    }
+
+    let total = 0;
+    cartContainer.innerHTML = cart.map((item, index) => {
+        total += item.price;
+        return `
+            <div class="cart-item">
+                <span>${item.name}</span>
+                <span>$${item.price.toFixed(2)}</span>
+            </div>
+        `;
+    }).join('');
+
+    totalDisplay.textContent = `$${total.toFixed(2)}`;
+}
+
+function checkout() {
+    alert("Thank you for your order! Your DORO treats will be ready for pickup soon.");
+    cart = [];
+    updateCartUI();
+    toggleCart();
+}
+
+// Update the displayMenu function to include the "Add" button
+function displayMenu(items) {
+    const container = document.getElementById('menu-container');
+    container.innerHTML = items.map(item => `
+        <div class="menu-item">
+            <h3>${item.name}</h3>
+            <p>${item.price}</p>
+            <button class="add-to-cart-btn" onclick="addToCart('${item.name}', '${item.price}')">
+                Add to Order
+            </button>
+        </div>
+    `).join('');
+}
+
+window.onload = () => displayMenu(menuData);
