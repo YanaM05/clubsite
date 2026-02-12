@@ -1,0 +1,81 @@
+/* Cart Floating Icon */
+#cart-icon {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--green);
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 2000;
+}
+
+#cart-count {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: var(--black);
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    border-radius: 10px;
+}
+
+/* Sidebar Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    right: -400px; /* Hidden by default */
+    width: 350px;
+    height: 100%;
+    background: var(--white);
+    box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    transition: 0.4s ease;
+    z-index: 3000;
+    padding: 30px;
+}
+
+.modal.active {
+    right: 0;
+}
+
+.close {
+    font-size: 2rem;
+    cursor: pointer;
+    float: right;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--beige);
+}
+
+.checkout-btn {
+    width: 100%;
+    margin-top: 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.add-to-cart-btn {
+    background: transparent;
+    border: 1px solid var(--green);
+    color: var(--green);
+    padding: 5px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.add-to-cart-btn:hover {
+    background: var(--green);
+    color: white;
+}
