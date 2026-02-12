@@ -1,0 +1,24 @@
+from flask import Flask, render_template, jsonify
+
+app = Flask(__name__)
+
+# Menu data modeled after Doro's actual signature items
+menu_items = [
+    {"id": 1, "name": "Pistachio Croissant", "price": 5.95, "category": "bakery", "desc": "House-made with pistachio spread topping."},
+    {"id": 2, "name": "DORO Bowl", "price": 14.25, "category": "mains", "desc": "Rotisserie chicken, avocado, corn, green rice, chimichurri."},
+    {"id": 3, "name": "Baklava Cold Brew", "price": 6.00, "category": "coffee", "desc": "Pistachio, hazelnut, and honey cold brew with cold foam."},
+    {"id": 4, "name": "Zohara Hummus Toast", "price": 8.95, "category": "mains", "desc": "Sourdough with house-made hummus and za'atar."},
+    {"id": 5, "name": "Butter Croissant", "price": 3.95, "category": "bakery", "desc": "Classic flaky European-style butter croissant."},
+    {"id": 6, "name": "Tiramisu Latte", "price": 5.95, "category": "coffee", "desc": "Iced latte with tiramisu syrup and cocoa powder."}
+]
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/api/menu')
+def get_menu():
+    return jsonify(menu_items)
+
+if __name__ == '__main__':
+    app.run(debug=True)
